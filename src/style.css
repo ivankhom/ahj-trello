@@ -1,0 +1,182 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: #0079bf;
+  font-family: Arial, sans-serif;
+  min-height: 100vh;
+}
+
+.board-wrapper {
+  padding: 16px;
+  overflow-x: auto;
+  min-height: 100vh;
+}
+
+.board {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.column {
+  background: #ebecf0;
+  border-radius: 6px;
+  width: 272px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 32px);
+}
+
+.column-header {
+  padding: 10px 12px 8px;
+  font-weight: bold;
+  font-size: 0.9rem;
+  color: #172b4d;
+  letter-spacing: 0.5px;
+}
+
+.card-list {
+  padding: 0 8px;
+  overflow-y: auto;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 4px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 4px;
+  padding: 10px 32px 10px 10px;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+  cursor: grab;
+  position: relative;
+  font-size: 0.9rem;
+  color: #172b4d;
+  line-height: 1.4;
+  user-select: none;
+}
+
+.card:hover {
+  background: #f4f5f7;
+}
+
+.card:hover .card-delete {
+  display: flex;
+}
+
+.card-delete {
+  display: none;
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #6b778c;
+  font-size: 0.8rem;
+  width: 22px;
+  height: 22px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+}
+
+.card-delete:hover {
+  background: #dfe1e6;
+  color: #172b4d;
+}
+
+.card-placeholder {
+  background: #c8d0da;
+  border-radius: 4px;
+  margin: 0;
+}
+
+.column-footer {
+  padding: 4px 8px 8px;
+}
+
+.btn-add-card {
+  background: none;
+  border: none;
+  color: #5e6c84;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 6px 8px;
+  border-radius: 4px;
+  width: 100%;
+  text-align: left;
+  transition: background 0.15s, color 0.15s;
+}
+
+.btn-add-card:hover {
+  background: #c8d0da;
+  color: #172b4d;
+}
+
+.add-card-form {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.add-card-form.hidden,
+.btn-add-card.hidden {
+  display: none;
+}
+
+.new-card-input {
+  width: 100%;
+  border: none;
+  border-radius: 4px;
+  padding: 8px 10px;
+  font-size: 0.9rem;
+  font-family: Arial, sans-serif;
+  resize: none;
+  min-height: 60px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  outline: none;
+}
+
+.add-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.btn-add-card-submit {
+  background: #5aac44;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 14px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-add-card-submit:hover {
+  background: #49902a;
+}
+
+.btn-add-card-cancel {
+  background: none;
+  border: none;
+  color: #6b778c;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+.btn-add-card-cancel:hover {
+  background: #dfe1e6;
+  color: #172b4d;
+}
