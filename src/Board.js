@@ -29,6 +29,30 @@ export default class Board {
     saveState(this.state);
   }
 
+  applyDragStyle(el, width, height) {
+    el.style.width = `${width}px`;
+    el.style.height = `${height}px`;
+    el.style.position = 'fixed';
+    el.style.zIndex = '1000';
+    el.style.cursor = 'grabbing';
+    el.style.pointerEvents = 'none';
+    el.style.opacity = '0.9';
+    el.style.boxShadow = '0 8px 24px rgba(0,0,0,0.25)';
+  }
+
+  resetDragStyle(el) {
+    el.style.width = '';
+    el.style.height = '';
+    el.style.position = '';
+    el.style.zIndex = '';
+    el.style.left = '';
+    el.style.top = '';
+    el.style.cursor = '';
+    el.style.pointerEvents = '';
+    el.style.opacity = '';
+    el.style.boxShadow = '';
+  }
+
   startDrag(cardEl, colId, cardId, e) {
     const rect = cardEl.getBoundingClientRect();
     this.dragOffsetX = e.clientX - rect.left;
@@ -46,14 +70,7 @@ export default class Board {
     this.placeholder.classList.add('card-placeholder');
     this.placeholder.style.height = `${rect.height}px`;
 
-    cardEl.style.width = `${rect.width}px`;
-    cardEl.style.position = 'fixed';
-    cardEl.style.zIndex = '1000';
-    cardEl.style.cursor = 'grabbing';
-    cardEl.style.pointerEvents = 'none';
-    cardEl.style.opacity = '0.9';
-    cardEl.style.boxShadow = '0 8px 24px rgba(0,0,0,0.25)';
-
+    this.applyDragStyle(cardEl, rect.width, rect.height);
     this.moveDragEl(e.clientX, e.clientY);
 
     cardEl.parentNode.insertBefore(this.placeholder, cardEl);
@@ -99,19 +116,11 @@ export default class Board {
 
     const { el } = this.dragging;
 
-    el.style.position = '';
-    el.style.zIndex = '';
-    el.style.left = '';
-    el.style.top = '';
-    el.style.width = '';
-    el.style.cursor = '';
-    el.style.pointerEvents = '';
-    el.style.opacity = '';
-    el.style.boxShadow = '';
-
     this.placeholder.parentNode.insertBefore(el, this.placeholder);
     this.placeholder.remove();
     this.placeholder = null;
+
+    this.resetDragStyle(el);
     this.dragging = null;
 
     document.removeEventListener('mousemove', this.onMouseMove);
